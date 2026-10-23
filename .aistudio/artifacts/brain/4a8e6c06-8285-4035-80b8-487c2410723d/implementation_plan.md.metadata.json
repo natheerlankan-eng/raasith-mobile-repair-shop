@@ -1,0 +1,6 @@
+{
+  "summary": "Implementation plan for upgrading the Goods Received Note (GRN) module with Excel-like keyboard grid navigation and integrating batch-wise inventory pricing in POS Invoicing.",
+  "updatedAt": "2026-10-19T17:22:53.254685326Z",
+  "requestFeedback": true,
+  "userFacing": true
+}
