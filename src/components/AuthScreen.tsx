@@ -46,7 +46,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLoginSuccess }) => {
         body: JSON.stringify({ email: email.trim(), password: password.trim() }),
       });
 
-      const data = await res.json();
+      // Safe JSON Parsing: வெற்றுப் பதில் (Empty response) வந்தால் அப்ளிகேஷன் கிராஷ் ஆகாமல் தடுக்கிறது
+      const responseText = await res.text();
+      const data = responseText ? JSON.parse(responseText) : {};
+
       if (!res.ok) {
         throw new Error(data.error || 'Failed to sign in.');
       }
@@ -78,8 +81,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLoginSuccess }) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password: 'google-oauth-staff-session' }),
         });
+        const responseText = await res.text();
+        const data = responseText ? JSON.parse(responseText) : {};
+
         if (res.ok) {
-          const data = await res.json();
           localStorage.setItem('raasith_staff_token', data.token);
           localStorage.setItem('raasith_staff_user', JSON.stringify(data.user));
           onLoginSuccess(data.token, data.user);
@@ -147,7 +152,6 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLoginSuccess }) => {
         />
 
         {/* Top-to-Bottom Transparency Gradient Overlay */}
-        {/* Fades smoothly from dark opacity at the top to a solid dark theme towards the bottom */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#080d1e]/75 via-[#09122a]/90 to-[#050814]" />
 
         {/* Subtle radial ambient spotlight for centered focus */}

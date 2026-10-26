@@ -73,12 +73,12 @@ export const LiveClock: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col items-end px-3 py-1 bg-[#09153a] rounded-xl border border-[rgba(96,165,250,0.25)] font-mono-jb shrink-0 select-none shadow-md shadow-blue-900/20 text-right">
+    <div className="flex flex-col items-end px-3 py-1 bg-slate-800 rounded-xl border border-slate-500 font-mono-jb shrink-0 select-none shadow-md text-right">
       <div className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-cyan-300 tracking-tight">
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
         <span>{timeStr}</span>
       </div>
-      <div className="text-[10px] text-blue-200/70 uppercase tracking-wider font-bold">
+      <div className="text-[10px] text-slate-200 uppercase tracking-wider font-bold">
         {dateStr}
       </div>
     </div>
@@ -135,7 +135,6 @@ export const NavRail: React.FC<NavRailProps> = ({
   const isTechnician = role === 'technician';
   const isCashier = role === 'cashier';
 
-  // Persistent sidebar app-style modules with uniform filled icons and colorful modern ecosystem palettes
   const navItems: {
     id: AppViewId;
     label: string;
@@ -220,7 +219,6 @@ export const NavRail: React.FC<NavRailProps> = ({
     },
   ];
 
-  // RBAC Filtering: Technician is restricted strictly ONLY to Repair Module
   const visibleNavItems = navItems.filter((item) => {
     if (isTechnician) {
       return item.id === 'jobs';
@@ -233,11 +231,8 @@ export const NavRail: React.FC<NavRailProps> = ({
 
   return (
     <>
-      {/* Desktop App-Style Left Sidebar (w-[92px]) with Solid White Background & Modern Mobile-App Rhythm */}
       <aside className="nav-rail hidden md:flex flex-col items-center justify-between w-[92px] bg-white border-r border-slate-200/90 py-2.5 z-40 shrink-0 select-none h-screen no-print shadow-[2px_0_10px_rgba(0,0,0,0.03)] overflow-y-auto no-scrollbar">
-        {/* Top Section: Distinct Home Anchor + Navigation List */}
         <div className="flex flex-col items-center gap-1 w-full flex-1 justify-start">
-          {/* Top Home Anchor Button (Primary Blue) */}
           <button
             type="button"
             onClick={() => onViewChange('home')}
@@ -249,12 +244,9 @@ export const NavRail: React.FC<NavRailProps> = ({
                 : 'hover:bg-slate-50 text-gray-700 hover:text-gray-900'
             }`}
           >
-            {/* Active Left Indicator Bar */}
             {currentView === 'home' && (
               <span className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-blue-600" />
             )}
-
-            {/* Filled App-Style Icon Squircle */}
             <div
               className={`w-8 h-8 rounded-[10px] flex items-center justify-center shrink-0 transition-transform duration-150 group-hover:scale-105 bg-blue-600 text-white ${
                 currentView === 'home' ? 'shadow-md shadow-blue-500/30' : 'opacity-90 group-hover:opacity-100 shadow-xs'
@@ -271,7 +263,6 @@ export const NavRail: React.FC<NavRailProps> = ({
             </span>
           </button>
 
-          {/* Navigation Items (Grid-like App Rhythm with Spacious Clickable Tiles) */}
           <nav className="flex flex-col items-center gap-1 w-full px-1 flex-1 justify-center my-0.5">
             {visibleNavItems.map((item) => {
               const Icon = item.icon;
@@ -288,14 +279,11 @@ export const NavRail: React.FC<NavRailProps> = ({
                       : 'hover:bg-slate-50 text-gray-700 hover:text-gray-900'
                   }`}
                 >
-                  {/* Left Indicator Bar on Active State */}
                   {isActive && (
                     <span
                       className={`absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full ${item.activeIndicator}`}
                     />
                   )}
-
-                  {/* Uniform App-Style Icon Squircle with Dedicated Color Coding */}
                   <div
                     className={`w-8 h-8 rounded-[10px] flex items-center justify-center shrink-0 transition-transform duration-150 group-hover:scale-105 ${item.iconBg} ${
                       isActive ? `shadow-md ${item.shadowColor}` : 'opacity-90 group-hover:opacity-100 shadow-xs'
@@ -303,8 +291,6 @@ export const NavRail: React.FC<NavRailProps> = ({
                   >
                     <Icon className="w-4.5 h-4.5" />
                   </div>
-
-                  {/* Clean Modern Typography in Dark Gray */}
                   <span
                     className={`font-sans text-[10px] sm:text-[10.5px] leading-tight mt-1 truncate max-w-[76px] text-center ${
                       isActive
@@ -314,8 +300,6 @@ export const NavRail: React.FC<NavRailProps> = ({
                   >
                     {item.label}
                   </span>
-
-                  {/* Badge */}
                   {item.badge && (
                     <span className="absolute top-0.5 right-1 bg-rose-500 text-white text-[7px] font-black px-1 rounded-full shadow-xs animate-bounce">
                       {item.badge}
@@ -327,9 +311,7 @@ export const NavRail: React.FC<NavRailProps> = ({
           </nav>
         </div>
 
-        {/* Bottom Actions: Admin RBAC, Profile Avatar ('M') & Neutral Logout */}
         <div className="flex flex-col items-center gap-1.5 w-full border-t border-slate-200/90 pt-2 shrink-0">
-          {/* Admin RBAC Permissions */}
           {isAdmin && onOpenAdminPermissions && (
             <button
               onClick={onOpenAdminPermissions}
@@ -341,7 +323,6 @@ export const NavRail: React.FC<NavRailProps> = ({
             </button>
           )}
 
-          {/* User Profile Avatar ('M') in Clean Modern Theme */}
           <button
             onClick={() => onViewChange('profile')}
             title={staffUser ? `${staffUser.name} (${staffUser.role})` : 'User Profile'}
@@ -351,7 +332,6 @@ export const NavRail: React.FC<NavRailProps> = ({
             {staffUser?.name ? staffUser.name.charAt(0).toUpperCase() : 'M'}
           </button>
 
-          {/* Neutral Clean Door Logout Icon */}
           <button
             onClick={onLogout}
             title="Sign Out"
@@ -363,7 +343,6 @@ export const NavRail: React.FC<NavRailProps> = ({
         </div>
       </aside>
 
-      {/* Mobile Bottom Navigation Bar (< md) with Solid White Theme */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 px-2 py-1.5 flex items-center justify-around no-print shadow-xl">
         {visibleNavItems.slice(0, 5).map((item) => {
           const Icon = item.icon;
@@ -497,7 +476,6 @@ export const Header: React.FC<HeaderProps> = ({
   });
   const [isSearching, setIsSearching] = useState(false);
 
-  // Live real-time multi-entity search querying database
   useEffect(() => {
     const q = searchQuery.trim();
     if (!q) {
@@ -519,7 +497,6 @@ export const Header: React.FC<HeaderProps> = ({
           setHighlightedIndex(0);
         }
       } catch (err) {
-        console.warn('Real-time search error, falling back to local jobs:', err);
         const lowQ = q.toLowerCase();
         const fallbackJobs = (jobs || []).filter(
           (j) =>
@@ -536,7 +513,6 @@ export const Header: React.FC<HeaderProps> = ({
     return () => clearTimeout(timer);
   }, [searchQuery, token, jobs]);
 
-  // Flattened results for keyboard navigation (Arrow Up / Down / Enter)
   const flattenedResults = React.useMemo<SearchResultEntry[]>(() => {
     const list: SearchResultEntry[] = [];
     (searchResults.jobs || []).forEach((j) => {
@@ -553,26 +529,6 @@ export const Header: React.FC<HeaderProps> = ({
     });
     return list;
   }, [searchResults]);
-
-  const viewTitles: Partial<Record<AppViewId, { title: string; subtitle: string }>> = {
-    home: { title: `${shopName} · DASHBOARD`, subtitle: 'OPERATIONS & REPAIR BENCH' },
-    pos: { title: 'FAST POS / RETAIL CHECKOUT', subtitle: 'HIGH-SPEED BARCODE BILLING' },
-    inventory: { title: 'INVENTORY & STOCK REGISTRY', subtitle: 'SKU CATALOG & REORDER ALERTS' },
-    suppliers: { title: 'SUPPLIER & VENDOR LEDGERS', subtitle: 'ACCOUNTS PAYABLE & CREDITOR LEDGER' },
-    finance: { title: 'FINANCE & EXPENSE CONSOLE', subtitle: 'OPERATING LEDGER & CASHBOOK' },
-    reports: { title: 'ENTERPRISE REPORTS CENTRE', subtitle: 'STATEMENTS, VALUATION & TAX AUDITS' },
-    jobs: { title: 'JOB ORDER SERVICE REGISTRY', subtitle: 'HARDWARE REPAIR SLIPS & STATUSES' },
-    settings: { title: 'SYSTEM CONFIGURATION CONSOLE', subtitle: 'USERS, BARCODES & THERMAL CUSTOMIZER' },
-    profile: { title: 'USER PROFILE & SECURITY', subtitle: 'STAFF SESSION CREDENTIALS' },
-    summary: { title: 'DAILY CASH & REVENUE SUMMARY', subtitle: 'COUNTER CLOSING & AUDIT' },
-    technicians: { title: 'TECHNICIAN ROSTER & WORKLOAD', subtitle: 'STAFF PERFORMANCE & COMMISSIONS' },
-    customers: { title: 'CUSTOMER DIRECTORY & REPAIR HISTORY', subtitle: 'CLIENT PROFILES & REPAIRS' },
-  };
-
-  const currentInfo = viewTitles[currentView] || {
-    title: shopName.toUpperCase(),
-    subtitle: 'REPAIR & RETAIL MANAGEMENT',
-  };
 
   const handleSelectEntry = (entry: SearchResultEntry) => {
     if (entry.type === 'job') {
@@ -596,11 +552,10 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="header h-20 px-4 sm:px-6 bg-gradient-to-r from-[#070e28] via-[#0a1742] to-[#0d1e56] border-b border-[rgba(96,165,250,0.2)] flex items-center justify-between shrink-0 z-30 select-none text-[#f8fafc] no-print shadow-md">
-      {/* Left: Single Clean Logo on Far Left & Single-Line Prominent Branding */}
+    <header className="header h-20 px-4 sm:px-6 bg-gradient-to-r from-slate-400 via-slate-300 to-slate-400 border-b border-slate-400 flex items-center justify-between shrink-0 z-30 select-none text-slate-900 no-print shadow-md">
+      {/* Left: Logo & Branding */}
       <div className="flex items-center gap-3.5 sm:gap-4 shrink-0">
-        {/* Only one single, clean logo on the far left */}
-        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#09153a] border-2 border-blue-400/40 p-1 flex items-center justify-center shrink-0 shadow-lg shadow-blue-950/60 overflow-hidden">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-900 border-2 border-slate-500 p-1 flex items-center justify-center shrink-0 shadow-lg overflow-hidden">
           <img
             src={activeLogoUrl}
             alt={activeShopName}
@@ -611,25 +566,22 @@ export const Header: React.FC<HeaderProps> = ({
           />
         </div>
 
-        {/* Outlet Details: Prominent single line + Branch directly underneath */}
         <div className="flex flex-col justify-center">
-          {/* Display "RAASITH MOBILE" in a single prominent line next to the logo */}
-          <h1 className="font-oswald text-xl sm:text-2xl lg:text-3xl uppercase tracking-wider text-white font-black leading-tight drop-shadow-sm whitespace-nowrap">
+          <h1 className="font-oswald text-xl sm:text-2xl lg:text-3xl uppercase tracking-wider text-slate-900 font-black leading-tight drop-shadow-sm whitespace-nowrap">
             {activeShopName || 'RAASITH MOBILE'}
           </h1>
-          {/* Move the branch details ("MAIN OUTLET AKKARAIPATTU") directly underneath the "RAASITH MOBILE" title */}
-          <p className="font-mono-jb text-xs sm:text-sm font-extrabold text-cyan-300 uppercase tracking-wider leading-tight mt-0.5 whitespace-nowrap">
+          <p className="font-mono-jb text-xs sm:text-sm font-extrabold text-slate-800 uppercase tracking-wider leading-tight mt-0.5 whitespace-nowrap">
             {activeBranch || 'MAIN OUTLET AKKARAIPATTU'}
           </p>
         </div>
       </div>
 
-      {/* Center: Search Bar & Dynamic Autocomplete Dropdown */}
+      {/* Center: Search Bar (Silver Background, White Box & Black Font without Black Box) */}
       <div className="hidden lg:flex items-center gap-3 relative">
         {onSearchChange && (
           <div className="relative">
-            <div className="search-bar bg-white border-2 border-slate-300 rounded-xl px-3.5 py-2 flex items-center w-72 xl:w-96 focus-within:border-blue-600 shadow-sm">
-              <Search className={`w-4 h-4 text-slate-500 shrink-0 ${isSearching ? 'animate-pulse text-blue-600' : ''}`} />
+            <div className="search-bar bg-white border-2 border-slate-400 rounded-xl px-3.5 py-2 flex items-center w-72 xl:w-96 focus-within:border-blue-600 shadow-sm">
+              <Search className={`w-4 h-4 text-slate-700 shrink-0 ${isSearching ? 'animate-pulse text-blue-600' : ''}`} />
               <input
                 type="text"
                 value={searchQuery}
@@ -660,22 +612,21 @@ export const Header: React.FC<HeaderProps> = ({
                   }
                 }}
                 placeholder="Search Job ID, Barcode, Phone, Supplier..."
-                className="bg-white border-none text-black font-bold w-full ml-3 outline-none text-xs placeholder:text-slate-500"
+                className="w-full ml-3 outline-none text-xs sm:text-sm font-bold text-slate-900 placeholder:text-slate-500"
+                style={{ color: 'white', backgroundColor: 'blue', WebkitTextFillColor: 'white' }}
               />
               {searchQuery && (
                 <button
                   onClick={() => onSearchChange('')}
-                  className="text-slate-400 hover:text-black p-0.5 cursor-pointer"
+                  className="text-slate-400 hover:text-slate-900 p-0.5 cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
 
-            {/* FLOATING REAL-TIME CATEGORIZED AUTOCOMPLETE DROPDOWN */}
             {isSearchFocused && searchQuery.trim() && flattenedResults.length > 0 && (
               <div className="absolute left-0 top-full mt-2 w-[480px] bg-[#081335] border border-cyan-400/60 rounded-2xl shadow-2xl shadow-blue-950/90 z-50 overflow-hidden divide-y divide-blue-500/20 backdrop-blur-md animate-fadeIn">
-                {/* Header Hint Bar */}
                 <div className="p-2.5 bg-[#0b1b4b] border-b border-cyan-500/20 flex items-center justify-between text-[10px] font-mono-jb font-bold text-cyan-300 uppercase">
                   <div className="flex items-center gap-1.5">
                     <Sparkles className="w-3 h-3 text-cyan-300" />
@@ -685,7 +636,6 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
 
                 <div className="max-h-96 overflow-y-auto divide-y divide-blue-500/15">
-                  {/* CATEGORY 1: Job Orders */}
                   {searchResults.jobs && searchResults.jobs.length > 0 && (
                     <div>
                       <div className="px-3 py-1.5 bg-[#09153d] text-[10px] font-mono-jb font-bold text-blue-300 uppercase tracking-wider flex items-center gap-1.5">
@@ -736,7 +686,6 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                   )}
 
-                  {/* CATEGORY 2: Inventory Items */}
                   {searchResults.items && searchResults.items.length > 0 && (
                     <div>
                       <div className="px-3 py-1.5 bg-[#09153d] text-[10px] font-mono-jb font-bold text-emerald-300 uppercase tracking-wider flex items-center gap-1.5">
@@ -787,7 +736,6 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                   )}
 
-                  {/* CATEGORY 3: Suppliers */}
                   {searchResults.suppliers && searchResults.suppliers.length > 0 && (
                     <div>
                       <div className="px-3 py-1.5 bg-[#09153d] text-[10px] font-mono-jb font-bold text-purple-300 uppercase tracking-wider flex items-center gap-1.5">
@@ -831,7 +779,6 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                   )}
 
-                  {/* CATEGORY 4: Customers */}
                   {searchResults.customers && searchResults.customers.length > 0 && (
                     <div>
                       <div className="px-3 py-1.5 bg-[#09153d] text-[10px] font-mono-jb font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-1.5">
@@ -881,9 +828,8 @@ export const Header: React.FC<HeaderProps> = ({
         )}
       </div>
 
-      {/* Right Actions: Header Actions, Single Username Badge, Time Display & Extreme Right Power Button */}
+      {/* Right Actions */}
       <div className="flex items-center gap-2 sm:gap-3.5 shrink-0">
-        {/* Real-time Notification Center Bell & Dropdown */}
         <NotificationCenter
           staffUser={staffUser}
           token={token}
@@ -903,7 +849,6 @@ export const Header: React.FC<HeaderProps> = ({
           }}
         />
 
-        {/* + New Repair Job Button (Cashier / Admin intake only; Technician has bench badge) */}
         {!isTechnician ? (
           <button
             onClick={onOpenNewJob}
@@ -920,19 +865,18 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
 
-        {/* Single Username Reference near time/status area with 1-Click Role Switcher */}
         <div className="relative hidden xl:block shrink-0">
           <button
             type="button"
             onClick={() => setShowRoleMenu((prev) => !prev)}
-            className="flex items-center gap-2.5 px-3.5 py-1.5 bg-[#09153a] hover:bg-[#12225a] border border-blue-500/25 rounded-xl transition-all cursor-pointer text-left shadow-inner"
+            className="flex items-center gap-2.5 px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-500 rounded-xl transition-all cursor-pointer text-left shadow-inner text-white"
             title="Click to Switch Role (RBAC: Admin / Cashier / Technician)"
           >
             <div className="text-right">
               <div className="text-xs sm:text-sm font-extrabold text-white font-mono-jb leading-tight">
                 {staffUser?.name || 'Mohamed Raasith'}
               </div>
-              <div className="text-[10px] sm:text-[11px] text-blue-300 font-mono-jb font-semibold flex items-center justify-end gap-1">
+              <div className="text-[10px] sm:text-[11px] text-slate-200 font-mono-jb font-semibold flex items-center justify-end gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>{staffUser?.role || 'Admin'} Session</span>
                 <ChevronDown className="w-3 h-3 text-cyan-300 ml-0.5" />
@@ -941,10 +885,10 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           {showRoleMenu && (
-            <div className="absolute right-0 top-12 z-50 w-60 bg-[#0d1636] border border-blue-500/30 rounded-2xl shadow-2xl p-2 text-xs font-mono-jb space-y-1.5 animate-in fade-in zoom-in-95 duration-100">
-              <div className="px-2.5 py-1 text-[10px] font-bold text-cyan-300 uppercase tracking-wider border-b border-blue-500/20 flex items-center justify-between">
+            <div className="absolute right-0 top-12 z-50 w-60 bg-slate-900 border border-slate-600 rounded-2xl shadow-2xl p-2 text-xs font-mono-jb space-y-1.5 animate-in fade-in zoom-in-95 duration-100 text-white">
+              <div className="px-2.5 py-1 text-[10px] font-bold text-cyan-300 uppercase tracking-wider border-b border-slate-700 flex items-center justify-between">
                 <span>Switch Active Role (RBAC)</span>
-                <span className="text-[9px] text-blue-300/60 font-normal">Test live</span>
+                <span className="text-[9px] text-slate-400 font-normal">Test live</span>
               </div>
 
               <button
@@ -955,15 +899,15 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
                   staffUser?.role?.toLowerCase() === 'cashier'
-                    ? 'bg-blue-600/30 border border-blue-500/40 text-white font-bold'
-                    : 'text-blue-200 hover:bg-blue-600/20 hover:text-white'
+                    ? 'bg-blue-600/40 border border-blue-500/50 text-white font-bold'
+                    : 'text-slate-200 hover:bg-slate-800 hover:text-white'
                 }`}
               >
                 <div>
                   <div className="font-bold flex items-center gap-1.5">
                     <span>👤 Cashier / Front Desk</span>
                   </div>
-                  <div className="text-[10px] text-blue-300/70 font-sans">Full POS, Billing & Job Intake</div>
+                  <div className="text-[10px] text-slate-400 font-sans">Full POS, Billing & Job Intake</div>
                 </div>
                 {staffUser?.role?.toLowerCase() === 'cashier' && <Check className="w-4 h-4 text-cyan-400" />}
               </button>
@@ -976,8 +920,8 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
                   staffUser?.role?.toLowerCase() === 'technician'
-                    ? 'bg-purple-600/30 border border-purple-500/40 text-white font-bold'
-                    : 'text-purple-200 hover:bg-purple-600/20 hover:text-white'
+                    ? 'bg-purple-600/40 border border-purple-500/50 text-white font-bold'
+                    : 'text-purple-200 hover:bg-slate-800 hover:text-white'
                 }`}
               >
                 <div>
@@ -997,8 +941,8 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
                   staffUser?.role?.toLowerCase() === 'admin'
-                    ? 'bg-amber-600/30 border border-amber-500/40 text-white font-bold'
-                    : 'text-amber-200 hover:bg-amber-600/20 hover:text-white'
+                    ? 'bg-amber-600/40 border border-amber-500/50 text-white font-bold'
+                    : 'text-amber-200 hover:bg-slate-800 hover:text-white'
                 }`}
               >
                 <div>
@@ -1013,7 +957,6 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
 
-        {/* Time Display and Day Status Tag aligned appropriately near the Power Button */}
         <div className="flex items-center gap-2 shrink-0">
           <LiveClock />
 
@@ -1029,7 +972,6 @@ export const Header: React.FC<HeaderProps> = ({
           </span>
         </div>
 
-        {/* Extreme Right Corner: Larger, Clearly Visible Glowing Day Status Power Button */}
         <button
           type="button"
           onClick={handleToggleDayShift}
@@ -1047,7 +989,6 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Power className="w-7 h-7 sm:w-8 sm:h-8 stroke-[3] transition-transform group-hover:scale-110 drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]" />
 
-          {/* Vibrant pulsing glow ring when Day On */}
           {isDayOpen && (
             <span className="absolute inset-0 rounded-full border-2 border-emerald-300 opacity-75 animate-ping pointer-events-none" />
           )}
@@ -1058,4 +999,3 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
-

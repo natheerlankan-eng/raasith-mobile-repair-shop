@@ -60,6 +60,14 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
   const [isClosedSession, setIsClosedSession] = useState(false);
   const [showPrintPreviewModal, setShowPrintPreviewModal] = useState(false);
 
+  // Function to handle logout and redirect to login page
+  const handleLogoutAndRedirect = () => {
+    localStorage.removeItem('raasith_staff_token');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  };
+
   const fetchValidationAndSummary = async () => {
     setLoading(true);
     try {
@@ -114,8 +122,12 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
       setSuccessNotice(data.message || `End of Day (EOD) closing completed successfully for ${currentDate}.`);
       setIsClosedSession(true);
       onEodClosed?.();
-      // Re-fetch summary to ensure latest data is displayed
-      fetchValidationAndSummary();
+      
+      // Automatically clear session and redirect to login page after successful EOD closing
+      setTimeout(() => {
+        handleLogoutAndRedirect();
+      }, 2000);
+
     } catch (err: any) {
       alert(err.message || 'EOD closing failed');
     } finally {
@@ -135,7 +147,13 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
       <div
         className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fadeIn select-none font-mono-jb no-print"
         onKeyDown={(e) => {
-          if (e.key === 'Escape') onClose();
+          if (e.key === 'Escape') {
+            if (isClosedSession) {
+              handleLogoutAndRedirect();
+            } else {
+              onClose();
+            }
+          }
         }}
       >
       <div className="bg-[#081335] border-2 border-rose-500/50 rounded-3xl w-full max-w-4xl shadow-2xl shadow-rose-950/90 overflow-hidden flex flex-col max-h-[92vh]">
@@ -176,7 +194,13 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
             </div>
           </div>
           <button
-            onClick={onClose}
+            onClick={() => {
+              if (isClosedSession) {
+                handleLogoutAndRedirect();
+              } else {
+                onClose();
+              }
+            }}
             className="text-blue-300 hover:text-white p-1 rounded-lg transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
@@ -305,7 +329,7 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
               {successNotice && (
                 <div className="bg-emerald-950/60 border border-emerald-500/40 rounded-2xl p-4 text-emerald-300 text-xs font-bold flex items-center gap-2 shadow-lg">
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>{successNotice}</span>
+                  <span>{successNotice} Redirecting to login page...</span>
                 </div>
               )}
 
@@ -485,7 +509,7 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
                               {r2.outflows.purchases.map((p: any, idx: number) => (
                                 <div key={idx} className="bg-[#050b20] p-2 rounded-lg flex justify-between items-center text-xs border border-blue-500/10">
                                   <div>
-                                    <div className="font-bold text-white text-[11px]">{p.grnNumber} - {p.supplierName}</div>
+                                    <div className="font-bold text-white text-[11px]">{p.grnNumber} &bull; {p.supplierName}</div>
                                     <div className="text-[10px] text-slate-400">Ref: {p.invoiceRef || 'N/A'}</div>
                                   </div>
                                   <span className="font-bold text-rose-300 font-mono-jb">
@@ -661,10 +685,16 @@ export const EodClosingModal: React.FC<EodClosingModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={onClose}
+              onClick={() => {
+                if (isClosedSession) {
+                  handleLogoutAndRedirect();
+                } else {
+                  onClose();
+                }
+              }}
               className="py-2.5 px-4 bg-[#0c183d] hover:bg-[#142352] text-blue-200 rounded-xl font-oswald text-xs uppercase tracking-wider font-bold transition-colors cursor-pointer"
             >
-              {isClosedSession ? 'Exit' : 'Cancel'}
+              {isClosedSession ? 'Exit & Login' : 'Cancel'}
             </button>
 
             {eodSummaryData && (
