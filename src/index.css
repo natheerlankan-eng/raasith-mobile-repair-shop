@@ -1,0 +1,525 @@
+@import "tailwindcss";
+
+:root {
+  --app-bg: #070e28;
+  --panel-bg: #09153a;
+  --header-bg: #0a1538;
+  --card-bg: #08102a;
+  --input-bg: #050c24;
+  --text-primary: #f8fafc;
+  --text-secondary: #93c5fd;
+  --text-muted: rgba(147, 197, 253, 0.7);
+  --border-color: rgba(96, 165, 250, 0.25);
+  --primary-accent: #3b82f6;
+  --success-green: #10b981;
+  --danger-red: #ef4444;
+  --warning-yellow: #eab308;
+  --bg-navy-950: #070d22;
+  --bg-navy-900: #0a1333;
+  --bg-navy-800: #0e1c4a;
+  --royal-blue: #1d4ed8;
+  --royal-blue-glow: rgba(37, 99, 235, 0.4);
+  --accent-red: #ef4444;
+  --ink: #f8fafc;
+  --ink-muted: rgba(248, 250, 252, 0.65);
+  --card-dark: #0f1d46;
+  --border-navy: rgba(96, 165, 250, 0.18);
+}
+
+/* ==========================================================================
+   PURE LIGHT WHITE THEME (Clean Corporate Light)
+   Optimized for daytime front-desk operations with high-contrast text
+   ========================================================================== */
+html.theme-light {
+  color-scheme: light;
+}
+
+html.theme-light body {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Main window backgrounds */
+html.theme-light .bg-\[\#070e28\],
+html.theme-light .bg-\[\#070d22\],
+html.theme-light .bg-\[\#070e24\],
+html.theme-light .main-container {
+  background-color: #f8fafc !important;
+  background-image: none !important;
+  color: #0f172a !important;
+}
+
+html.theme-light .bg-gradient-to-br {
+  background: #f1f5f9 !important;
+}
+
+/* Sidebar Nav Rail - Modern Mobile-App Clean White Interface */
+.nav-rail {
+  background-color: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+.nav-rail .nav-item {
+  color: #111827 !important;
+}
+
+/* Top Navigation Header in Light Mode */
+html.theme-light .header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.theme-light .header h1 {
+  color: #0f172a !important;
+}
+
+/* Panels, Cards, Tables, Modules */
+html.theme-light .bg-\[\#09153a\],
+html.theme-light .bg-\[\#0a1538\],
+html.theme-light .bg-\[\#08102a\],
+html.theme-light .bg-\[\#081335\],
+html.theme-light .bg-\[\#0c1a45\],
+html.theme-light .bg-\[\#0b163a\],
+html.theme-light .bg-\[\#091333\],
+html.theme-light .bg-\[\#091436\],
+html.theme-light .bg-\[\#0a1844\],
+html.theme-light .bg-\[\#0e1c4a\],
+html.theme-light .bg-\[\#0e1d48\],
+html.theme-light .bg-\[\#0f1d46\],
+html.theme-light .bg-\[\#0c183e\],
+html.theme-light .bg-\[\#0c1c4d\],
+html.theme-light .bg-\[\#0c1c45\],
+html.theme-light .bg-\[\#1c1c1e\],
+html.theme-light .bg-\[\#0b1844\] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Inputs, Textareas, Select elements in Light Mode */
+html.theme-light input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+html.theme-light select,
+html.theme-light textarea,
+html.theme-light .bg-\[\#050c24\],
+html.theme-light .bg-\[\#060e28\],
+html.theme-light .bg-\[\#080f28\] {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #94a3b8 !important;
+}
+
+html.theme-light input::placeholder,
+html.theme-light textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* High-Contrast Typography Adaptations for Light Mode */
+html.theme-light .text-\[\#f8fafc\],
+html.theme-light .text-\[\#f8f7f4\],
+html.theme-light .text-white:not(button *):not(button):not([class*="bg-red-"] *):not([class*="bg-blue-"] *):not([class*="bg-emerald-"] *):not([class*="bg-rose-"] *):not([class*="bg-gradient-"] *) {
+  color: #0f172a !important;
+}
+
+/* Preserving Action Buttons with White Text */
+html.theme-light button.bg-blue-600,
+html.theme-light button.bg-blue-600 *,
+html.theme-light button.bg-blue-700,
+html.theme-light button.bg-blue-700 *,
+html.theme-light button.bg-gradient-to-r,
+html.theme-light button.bg-gradient-to-r *,
+html.theme-light button.bg-gradient-to-tr,
+html.theme-light button.bg-gradient-to-tr *,
+html.theme-light button.bg-rose-600,
+html.theme-light button.bg-rose-600 *,
+html.theme-light button.bg-red-600,
+html.theme-light button.bg-red-600 *,
+html.theme-light button.bg-emerald-600,
+html.theme-light button.bg-emerald-600 *,
+html.theme-light button.bg-indigo-600,
+html.theme-light button.bg-indigo-600 *,
+html.theme-light .text-white-force {
+  color: #ffffff !important;
+}
+
+/* High-contrast subheadings and labels */
+html.theme-light .text-blue-100,
+html.theme-light .text-blue-200,
+html.theme-light .text-blue-200\/60,
+html.theme-light .text-blue-200\/70,
+html.theme-light .text-blue-200\/80,
+html.theme-light .text-blue-300,
+html.theme-light .text-blue-300\/60,
+html.theme-light .text-blue-300\/70,
+html.theme-light .text-blue-300\/80,
+html.theme-light .text-slate-300,
+html.theme-light .text-slate-400,
+html.theme-light .text-zinc-300,
+html.theme-light .text-zinc-400,
+html.theme-light .text-gray-300,
+html.theme-light .text-gray-400 {
+  color: #334155 !important;
+}
+
+/* Accent colors calibrated for high contrast on pure white */
+html.theme-light .text-cyan-300,
+html.theme-light .text-cyan-400 {
+  color: #0369a1 !important;
+}
+
+html.theme-light .text-amber-300,
+html.theme-light .text-amber-400,
+html.theme-light .text-yellow-300,
+html.theme-light .text-yellow-400 {
+  color: #b45309 !important;
+}
+
+html.theme-light .text-emerald-300,
+html.theme-light .text-emerald-400,
+html.theme-light .text-green-300,
+html.theme-light .text-green-400 {
+  color: #047857 !important;
+}
+
+html.theme-light .text-rose-300,
+html.theme-light .text-rose-400,
+html.theme-light .text-red-300,
+html.theme-light .text-red-400 {
+  color: #b91c1c !important;
+}
+
+html.theme-light .text-purple-300,
+html.theme-light .text-purple-400 {
+  color: #6b21a8 !important;
+}
+
+/* Borders in Light Mode */
+html.theme-light .border-blue-500\/10,
+html.theme-light .border-blue-500\/20,
+html.theme-light .border-blue-500\/25,
+html.theme-light .border-blue-500\/30,
+html.theme-light .border-blue-500\/40,
+html.theme-light .border-\[rgba\(96\,165\,250\,0\.15\)\],
+html.theme-light .border-\[rgba\(96\,165\,250\,0\.2\)\],
+html.theme-light .border-\[rgba\(96\,165\,250\,0\.25\)\] {
+  border-color: #cbd5e1 !important;
+}
+
+/* Tables in Light Mode */
+html.theme-light tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.theme-light thead th {
+  color: #0f172a !important;
+  background-color: #e8eaed !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Custom scrollbars in Light Mode */
+html.theme-light ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+html.theme-light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+}
+html.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* ==========================================================================
+   OLED MIDNIGHT BLACK THEME
+   Pure true black (#000000) for OLED battery saving & high-end contrast
+   ========================================================================== */
+html.theme-oled {
+  color-scheme: dark;
+}
+
+html.theme-oled body,
+html.theme-oled .bg-\[\#070e28\],
+html.theme-oled .bg-\[\#070d22\],
+html.theme-oled .bg-\[\#070e24\],
+html.theme-oled .main-container {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+html.theme-oled .nav-rail,
+html.theme-oled .header,
+html.theme-oled .bg-\[\#09153a\],
+html.theme-oled .bg-\[\#0a1538\],
+html.theme-oled .bg-\[\#08102a\],
+html.theme-oled .bg-\[\#081335\],
+html.theme-oled .bg-\[\#0c1a45\],
+html.theme-oled .bg-\[\#0b163a\],
+html.theme-oled .bg-\[\#091333\],
+html.theme-oled .bg-\[\#091436\],
+html.theme-oled .bg-\[\#0a1844\],
+html.theme-oled .bg-\[\#0e1c4a\],
+html.theme-oled .bg-\[\#0e1d48\],
+html.theme-oled .bg-\[\#0f1d46\],
+html.theme-oled .bg-\[\#0c183e\],
+html.theme-oled .bg-\[\#0c1c4d\],
+html.theme-oled .bg-\[\#0c1c45\],
+html.theme-oled .bg-\[\#1c1c1e\] {
+  background-color: #050507 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.theme-oled input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+html.theme-oled select,
+html.theme-oled textarea,
+html.theme-oled .bg-\[\#050c24\],
+html.theme-oled .bg-\[\#060e28\],
+html.theme-oled .bg-\[\#080f28\] {
+  background-color: #0a0a0c !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+}
+
+html.theme-oled ::-webkit-scrollbar-track {
+  background: #000000 !important;
+}
+html.theme-oled ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+@layer base {
+  body {
+    background-color: var(--app-bg);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: #2563eb;
+    color: #ffffff;
+  }
+}
+
+.font-oswald {
+  font-family: 'Oswald', sans-serif;
+}
+
+.font-mono-jb {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom scrollbars for dark industrial navy look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080f28;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.45);
+}
+
+/* ==========================================================================
+   PRINT PREVIEW & THERMAL / DOCUMENT PRINT ENGINE
+   ========================================================================== */
+@media screen {
+  .print-only,
+  .print-thermal-receipt,
+  .print-job-slip,
+  .print-eod-report {
+    display: none !important;
+  }
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 4mm;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  html, body, #root, #root > div, .main-container {
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  .no-print,
+  nav,
+  aside,
+  header,
+  .nav-rail,
+  .header,
+  button:not(.allow-print) {
+    display: none !important;
+  }
+
+  /* Force display of all print sheets even if marked hidden */
+  .print-only,
+  .print-thermal-receipt,
+  .print-job-slip,
+  .print-eod-report,
+  .hidden.print-only,
+  .hidden.print-thermal-receipt {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: static !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .print-thermal-receipt,
+  .print-job-slip {
+    width: 100% !important;
+    max-width: 80mm !important;
+    margin: 0 auto !important;
+    padding: 2px 4px !important;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+
+  .print-eod-report {
+    width: 100% !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 5mm !important;
+    font-family: 'JetBrains Mono', 'Courier New', monospace, sans-serif !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    color: #000000 !important;
+  }
+
+  .print-eod-report.paper-size-80mm {
+    width: 100% !important;
+    max-width: 80mm !important;
+    margin: 0 auto !important;
+    padding: 3mm 2mm !important;
+    font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+  }
+
+  .print-eod-report.paper-size-a4 {
+    width: 100% !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 8mm 10mm !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  .print-eod-report.paper-size-a3 {
+    width: 100% !important;
+    max-width: 420mm !important;
+    margin: 0 auto !important;
+    padding: 10mm 15mm !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  .print-a4-sheet {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 195mm !important;
+    margin: 0 auto !important;
+    padding: 8mm !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Inter', -apple-system, sans-serif !important;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL POS BILLING TABLE TYPOGRAPHY (Century Gothic / Calisto MT & Bold)
+   ========================================================================== */
+.font-pos-table,
+.pos-billing-table,
+.pos-billing-table * {
+  font-family: 'Century Gothic', 'Calisto MT', 'CenturyGothic', AppleGothic, sans-serif !important;
+}
+
+/* ==========================================================================
+   GLOBAL SEARCH BAR INPUT ENFORCEMENT
+   Solid pure white background (bg-white) & sharp high-contrast black text (text-black)
+   Maintained before click, during focus, and when typing inside the search box.
+   ========================================================================== */
+input[type="search"],
+input[placeholder*="Search" i],
+input[placeholder*="search" i],
+input[placeholder*="Scan" i],
+.search-bar input,
+.search-bar-input,
+.global-search-input,
+[data-role="search-input"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  caret-color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+input[type="search"]:hover,
+input[type="search"]:focus,
+input[type="search"]:active,
+input[placeholder*="Search" i]:hover,
+input[placeholder*="Search" i]:focus,
+input[placeholder*="Search" i]:active,
+input[placeholder*="search" i]:hover,
+input[placeholder*="search" i]:focus,
+input[placeholder*="search" i]:active,
+input[placeholder*="Scan" i]:hover,
+input[placeholder*="Scan" i]:focus,
+input[placeholder*="Scan" i]:active,
+.search-bar input:focus,
+.search-bar-input:focus {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  caret-color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+input[type="search"]::placeholder,
+input[placeholder*="Search" i]::placeholder,
+input[placeholder*="search" i]::placeholder,
+input[placeholder*="Scan" i]::placeholder,
+.search-bar input::placeholder,
+.search-bar-input::placeholder {
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+  opacity: 1 !important;
+}
+
+.search-bar {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}
+
+.search-bar svg,
+div:has(> input[placeholder*="Search" i]) > svg,
+div:has(> input[placeholder*="Scan" i]) > svg {
+  color: #64748b !important;
+}
+

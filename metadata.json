@@ -1,0 +1,6 @@
+{
+  "name": "Raasith Mobile - Repair Shop Management",
+  "description": "Mobile phone repair shop management system for Raasith Mobile, tracking repair jobs, statuses, customer history, WhatsApp alerts, and job slips.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
